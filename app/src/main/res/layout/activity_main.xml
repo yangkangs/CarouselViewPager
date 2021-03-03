@@ -19,8 +19,8 @@
         android:layout_width="345dp"
         android:layout_height="110dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
-        app:fillet="10dp"
+        android:layout_marginTop="10dp"
+        app:fillet="5dp"
         app:indicatorFocus="@drawable/radius_bg1"
         app:indicatorNormal="@drawable/radius_bg2"
         app:indicatorType="dot"
@@ -29,7 +29,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:padding="10dp"
         android:text="数字指示器轮播图" />
 
@@ -38,11 +38,31 @@
         android:layout_width="345dp"
         android:layout_height="110dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
-        app:fillet="10dp"
+        android:layout_marginTop="10dp"
+        app:fillet="5dp"
         app:indicatorFocus="@drawable/radius_bg1"
         app:indicatorNormal="@drawable/radius_bg2"
         app:indicatorType="number"
+        app:pageMargin="15dp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:text="自定义轮播图" />
+
+    <cn.yangkang.carousellibrary.CarouselViewPager
+        android:id="@+id/carousel3"
+        android:layout_width="345dp"
+        android:layout_height="110dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        app:fillet="5dp"
+        app:indicatorFocus="@drawable/radius_bg1"
+        app:indicatorNormal="@drawable/radius_bg2"
+        app:indicatorType="none"
         app:pageMargin="15dp" />
 
 

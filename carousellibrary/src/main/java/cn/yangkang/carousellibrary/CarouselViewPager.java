@@ -36,12 +36,20 @@ import java.util.List;
 public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageChangeListener {
 
     private static final String TAG = "CarouselViewPager";
+
+    private int roun = 0;//item圆角
+    private int pageMargin = 0;//item间间隔
+    private boolean isScrolling = false; // 滚动框是否滚动着
+    private boolean isCycle = true; // 是否循环，默认为true
+    private boolean isWheel = true; // 是否轮播，默认为true(是否自动滚动)
+    private int delay = 3000; // 默认轮播时间
     /**
      * none不显示，dot圆点，number数字
      */
     private String NONE_INDICATOR = "none";
     private String DOT_INDICATOR = "dot";
     private String NUMBER_INDICATOR = "number";
+
     private String indicatorType = DOT_INDICATOR;
 
 
@@ -63,17 +71,7 @@ public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageCh
 
     private ImageView[] mIndicators;    //指示器小圆点
 
-    private int roun = 0;//item圆角
 
-    private int pageMargin = 0;//item间间隔
-
-    private boolean isScrolling = false; // 滚动框是否滚动着
-
-    private boolean isCycle = true; // 是否循环，默认为true
-
-    private boolean isWheel = true; // 是否轮播，默认为true(是否自动滚动)
-
-    private int delay = 3000; // 默认轮播时间
 
     private int mCurrentPosition = 0; // 轮播当前位置
 
