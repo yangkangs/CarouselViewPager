@@ -37,19 +37,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }
 
-//allprojects {
-//    repositories {
-//        google()
-//        jcenter()
-//    }
-//    //加上这些
-//    tasks.withType(Javadoc) {
-//        options{ encoding "UTF-8"
-//            charSet 'UTF-8'
-//            links "http://docs.oracle.com/javase/7/docs/api"
-//        }
-//    }
-//}
+
 
 publish {
     //api 'com.example.libapplication:TimeUtil:1.0.0'
