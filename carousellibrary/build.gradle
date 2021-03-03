@@ -40,7 +40,7 @@ dependencies {
 
 
 publish {
-    //api 'com.example.libapplication:TimeUtil:1.0.0'
+    //api 'cn.yangkang.carousellibrary:CarouselViewPager:1.0.0'
     userOrg = 'yangkang'      //bintray注册的用户名
     repoName = 'android'           //bintray仓库名
     groupId = 'cn.yangkang.carousellibrary'         //compile引用时的第1部分groupId，一般为module的包名
