@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="CarouselViewPager">
+        <attr name="fillet" format="dimension" />
+        <attr name="pageMargin" format="dimension" />
+        <attr name="indicatorFocus" format="reference" />
+        <attr name="indicatorNormal" format="reference" />
+        <attr name="isWheel" format="boolean" />
+        <attr name="indicatorType" format="string" />
+
+    </declare-styleable>
+
+</resources>
