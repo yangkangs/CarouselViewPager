@@ -23,6 +23,32 @@ implementation 'cn.yangkang.carousellibrary:CarouselViewPager:1.0.0'
             }
         });
         
+        引用布局
+         <cn.yangkang.carousellibrary.CarouselViewPager
+        android:id="@+id/carousel1"
+        android:layout_width="345dp"
+        android:layout_height="110dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        app:fillet="5dp"
+        app:indicatorFocus="@drawable/radius_bg1"
+        app:indicatorNormal="@drawable/radius_bg2"
+        app:indicatorType="dot"
+        app:pageMargin="15dp" />
+        
+        
+        
+      可配置的字段
+     <declare-styleable name="CarouselViewPager">
+        <attr name="fillet" format="dimension" />
+        <attr name="pageMargin" format="dimension" />
+        <attr name="indicatorFocus" format="reference" />
+        <attr name="indicatorNormal" format="reference" />
+        <attr name="isWheel" format="boolean" />
+        <attr name="indicatorType" format="string" />
+    </declare-styleable>
+        
+    可配置的字段说明
     private int roun = 0;//item圆角
     private int pageMargin = 0;//item间间隔
     private boolean isScrolling = false; // 滚动框是否滚动着
@@ -36,26 +62,10 @@ implementation 'cn.yangkang.carousellibrary:CarouselViewPager:1.0.0'
     private String DOT_INDICATOR = "dot";
     private String NUMBER_INDICATOR = "number";
     
-        <cn.yangkang.carousellibrary.CarouselViewPager
-        android:id="@+id/carousel1"
-        android:layout_width="345dp"
-        android:layout_height="110dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        app:fillet="5dp"
-        app:indicatorFocus="@drawable/radius_bg1"
-        app:indicatorNormal="@drawable/radius_bg2"
-        app:indicatorType="dot"
-        app:pageMargin="15dp" />
+       
         
-     <declare-styleable name="CarouselViewPager">
-        <attr name="fillet" format="dimension" />
-        <attr name="pageMargin" format="dimension" />
-        <attr name="indicatorFocus" format="reference" />
-        <attr name="indicatorNormal" format="reference" />
-        <attr name="isWheel" format="boolean" />
-        <attr name="indicatorType" format="string" />
-    </declare-styleable>
+      
+
     
     
     
