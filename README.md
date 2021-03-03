@@ -3,7 +3,7 @@
 一个简化版的轮播图
 ![image](https://github.com/yangkangs/CarouselViewPager/blob/master/device-2021-03-03-202603.png) 
 
-implementation 'cn.yangkang.carousellibrary:CarouselViewPager:1.0.0'
+implementation 'cn.yangkang.carousellibrary:CarouselViewPager:1.0.1'
 
         //自定义item
         carouselView3.setMyView(R.layout.item_banner_image2, new CarouselViewPager.MyViewInitListener() {
