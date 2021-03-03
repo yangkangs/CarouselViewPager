@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 实心 -->
+    <solid android:color="#804c4c4c" />
+    <!--描边-->
+    <!--    <stroke-->
+    <!--        android:width="0.94mm"-->
+    <!--        android:color="#3DB3B1" />-->
+    <!--    圆角-->
+    <!--<corners-->
+    <!--android:bottomLeftRadius="4mm"-->
+    <!--android:bottomRightRadius="4mm"-->
+    <!--android:topLeftRadius="4mm"-->
+    <!--android:topRightRadius="4mm" />-->
+
+    <corners android:radius="12dp" />
+
+    <!--    <padding
+            android:bottom="5dp"
+            android:left="5dp"
+            android:right="5dp"
+            android:top="5dp" />-->
+
+</shape>
