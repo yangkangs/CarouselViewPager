@@ -36,18 +36,6 @@ implementation 'cn.yangkang.carousellibrary:CarouselViewPager:1.0.0'
     private String DOT_INDICATOR = "dot";
     private String NUMBER_INDICATOR = "number";
     
- 
-<resources>
-    <declare-styleable name="CarouselViewPager">
-        <attr name="fillet" format="dimension" />
-        <attr name="pageMargin" format="dimension" />
-        <attr name="indicatorFocus" format="reference" />
-        <attr name="indicatorNormal" format="reference" />
-        <attr name="isWheel" format="boolean" />
-        <attr name="indicatorType" format="string" />
-    </declare-styleable>
-</resources>
-    
         <cn.yangkang.carousellibrary.CarouselViewPager
         android:id="@+id/carousel1"
         android:layout_width="345dp"
@@ -59,6 +47,15 @@ implementation 'cn.yangkang.carousellibrary:CarouselViewPager:1.0.0'
         app:indicatorNormal="@drawable/radius_bg2"
         app:indicatorType="dot"
         app:pageMargin="15dp" />
+        
+     <declare-styleable name="CarouselViewPager">
+        <attr name="fillet" format="dimension" />
+        <attr name="pageMargin" format="dimension" />
+        <attr name="indicatorFocus" format="reference" />
+        <attr name="indicatorNormal" format="reference" />
+        <attr name="isWheel" format="boolean" />
+        <attr name="indicatorType" format="string" />
+    </declare-styleable>
     
     
     
