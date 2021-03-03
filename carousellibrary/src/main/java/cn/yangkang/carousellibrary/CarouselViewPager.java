@@ -27,7 +27,6 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.metamedical.carousellibrary.R;
 
 /**
  * @Author: created by YangKang
