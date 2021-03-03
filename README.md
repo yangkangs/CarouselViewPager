@@ -23,20 +23,18 @@ implementation 'cn.yangkang.carousellibrary:CarouselViewPager:1.0.0'
             }
         });
         
-     /**
-     * none不显示，dot圆点，number数字
-     */
-    private String NONE_INDICATOR = "none";
-    private String DOT_INDICATOR = "dot";
-    private String NUMBER_INDICATOR = "number";
-    private String indicatorType = DOT_INDICATOR;
-    
     private int roun = 0;//item圆角
     private int pageMargin = 0;//item间间隔
     private boolean isScrolling = false; // 滚动框是否滚动着
     private boolean isCycle = true; // 是否循环，默认为true
     private boolean isWheel = true; // 是否轮播，默认为true(是否自动滚动)
     private int delay = 3000; // 默认轮播时间
+    /**
+     * none不显示，dot圆点，number数字
+     */
+    private String NONE_INDICATOR = "none";
+    private String DOT_INDICATOR = "dot";
+    private String NUMBER_INDICATOR = "number";
     
         <cn.yangkang.carousellibrary.CarouselViewPager
         android:id="@+id/carousel1"
