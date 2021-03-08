@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -35,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         carouselView1 = findViewById(R.id.carousel1);
         carouselView2 = findViewById(R.id.carousel2);
         carouselView3 = findViewById(R.id.carousel3);
-
         carouselView1.setData(objects, new CarouselViewPager.ImageCycleViewListener() {
             @Override
             public void onImageClick(String url, int index, View imageView) {

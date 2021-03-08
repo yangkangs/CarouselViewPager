@@ -60,6 +60,8 @@ public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageCh
 //    private TextView mTitle;//标题
 
     private LinearLayout mIndicatorLayout; // 指示器
+    private int myLayoutId = -1;
+    private TextView lable_TextView;
 
     private Handler handler;//每几秒后执行下一张的切换
 
@@ -104,8 +106,7 @@ public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageCh
             }
         }
     };
-    private int myLayoutId = -1;
-    private TextView lable_TextView;
+
 
 
     public CarouselViewPager(Context context) {
@@ -181,6 +182,15 @@ public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageCh
                 }
             }
         };
+    }
+
+    public LinearLayout getdotIndicator() {
+       return mIndicatorLayout;
+    }
+
+
+    public TextView getNumIndicator() {
+        return lable_TextView;
     }
 
     /**
