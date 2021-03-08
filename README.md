@@ -3,7 +3,7 @@
 一个简化版的轮播图
 ![image](https://github.com/yangkangs/CarouselViewPager/blob/master/device-2021-03-03-202603.png) 
 
-implementation 'cn.yangkang.carousellibrary:CarouselViewPager:1.0.1'
+implementation 'cn.yangkang.carousellibrary:CarouselViewPager:1.0.2'
 
         //自定义item
         carouselView3.setMyView(R.layout.item_banner_image2, new CarouselViewPager.MyViewInitListener() {
@@ -62,6 +62,12 @@ implementation 'cn.yangkang.carousellibrary:CarouselViewPager:1.0.1'
     private String NONE_INDICATOR = "none";
     private String DOT_INDICATOR = "dot";
     private String NUMBER_INDICATOR = "number";
+    
+    获取指示器
+    可以获取指示器控件，进行各种指示器自定义，比如位置
+    LinearLayout linearLayout = carouselView1.getdotIndicator();
+    TextView numIndicator = carouselView1.getNumIndicator();
+    
     
        
         
