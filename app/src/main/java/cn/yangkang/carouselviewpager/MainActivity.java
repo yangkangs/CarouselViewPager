@@ -31,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         objects.add("https://doctor.metadoc.cn/api/ih-resources/images/1358085651920060416");
-//        objects.add("https://doctor.metadoc.cn/api/ih-resources/images/1358085817863503872");
-//        objects.add("https://doctor.metadoc.cn/api/ih-resources/images/1358085910922526720");
-//        objects.add("https://doctor.metadoc.cn/api/ih-resources/images/1358085997899808768");
-//        objects.add("https://doctor.metadoc.cn/api/ih-resources/images/1358086084080173056");
+        objects.add("https://doctor.metadoc.cn/api/ih-resources/images/1358085817863503872");
+        objects.add("https://doctor.metadoc.cn/api/ih-resources/images/1358085910922526720");
+        objects.add("https://doctor.metadoc.cn/api/ih-resources/images/1358085997899808768");
+        objects.add("https://doctor.metadoc.cn/api/ih-resources/images/1358086084080173056");
         carouselView1 = findViewById(R.id.carousel1);
         carouselView2 = findViewById(R.id.carousel2);
         carouselView3 = findViewById(R.id.carousel3);
