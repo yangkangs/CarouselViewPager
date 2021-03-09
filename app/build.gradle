@@ -34,5 +34,5 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation project(':carousellibrary')
-//    api 'cn.yangkang.carousellibrary:CarouselViewPager:1.0.1'
+//    api 'cn.yangkang.carousellibrary:CarouselViewPager:1.0.2'
 }

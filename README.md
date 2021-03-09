@@ -3,7 +3,7 @@
 一个简化版的轮播图
 ![image](https://github.com/yangkangs/CarouselViewPager/blob/master/device-2021-03-03-202603.png) 
 
-implementation 'cn.yangkang.carousellibrary:CarouselViewPager:1.0.1'
+implementation 'cn.yangkang.carousellibrary:CarouselViewPager:1.0.3'
 
         //自定义item
         carouselView3.setMyView(R.layout.item_banner_image2, new CarouselViewPager.MyViewInitListener() {
@@ -50,7 +50,7 @@ implementation 'cn.yangkang.carousellibrary:CarouselViewPager:1.0.1'
     </declare-styleable>
         
     可配置的字段说明
-    private int roun = 0;//item圆角
+    private int fillet= 0;//item圆角
     private int pageMargin = 0;//item间间隔
     private boolean isScrolling = false; // 滚动框是否滚动着
     private boolean isCycle = true; // 是否循环，默认为true

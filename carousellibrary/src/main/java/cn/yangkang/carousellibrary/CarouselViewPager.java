@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Outline;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,26 +31,19 @@ import java.util.List;
 
 /**
  * @Author: created by YangKang
- * @CreateDate: 2021/3/3 16:58
+ * @CreateDate: 2021/3/3 15:32
  * @Description: 轮播图
  */
-public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageChangeListener {
+public class CarouselViewPager extends FrameLayout
+        implements ViewPager.OnPageChangeListener {
 
-    private static final String TAG = "CarouselViewPager";
-
-    private int roun = 0;//item圆角
-    private int pageMargin = 0;//item间间隔
-    private boolean isScrolling = false; // 滚动框是否滚动着
-    private boolean isCycle = true; // 是否循环，默认为true
-    private boolean isWheel = true; // 是否轮播，默认为true(是否自动滚动)
-    private int delay = 3000; // 默认轮播时间
+    private static final String TAG = "CycleViewPager";
     /**
      * none不显示，dot圆点，number数字
      */
     private String NONE_INDICATOR = "none";
     private String DOT_INDICATOR = "dot";
     private String NUMBER_INDICATOR = "number";
-
     private String indicatorType = DOT_INDICATOR;
 
 
@@ -57,11 +51,9 @@ public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageCh
 
     public ViewPager mViewPager;//实现轮播图的ViewPager
 
-//    private TextView mTitle;//标题
+    private TextView mTitle;//标题
 
     private LinearLayout mIndicatorLayout; // 指示器
-    private int myLayoutId = -1;
-    private TextView lable_TextView;
 
     private Handler handler;//每几秒后执行下一张的切换
 
@@ -73,7 +65,17 @@ public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageCh
 
     private ImageView[] mIndicators;    //指示器小圆点
 
+    private int fillet = 0;//item圆角
 
+    private int pageMargin = 0;//item间间隔
+
+    private boolean isScrolling = false; // 滚动框是否滚动着
+
+    private boolean isCycle = true; // 是否循环，默认为true
+
+    private boolean isWheel = true; // 是否轮播，默认为true(是否自动滚动)
+
+    private int delay = 3000; // 默认轮播时间
 
     private int mCurrentPosition = 0; // 轮播当前位置
 
@@ -106,7 +108,8 @@ public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageCh
             }
         }
     };
-
+    private int myLayoutId = -1;
+    private TextView lable_TextView;
 
 
     public CarouselViewPager(Context context) {
@@ -121,12 +124,15 @@ public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageCh
         super(context, attrs, defStyleAttr);
         this.mContext = context;
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CarouselViewPager);
-        roun = (int) typedArray.getDimension(R.styleable.CarouselViewPager_fillet, 0);
+        fillet = (int) typedArray.getDimension(R.styleable.CarouselViewPager_fillet, 0);
         pageMargin = (int) typedArray.getDimension(R.styleable.CarouselViewPager_pageMargin, 0);
         mIndicatorSelected = typedArray.getResourceId(R.styleable.CarouselViewPager_indicatorFocus, R.drawable.radius_bg1);
         mIndicatorUnselected = typedArray.getResourceId(R.styleable.CarouselViewPager_indicatorNormal, R.drawable.radius_bg2);
         isWheel = typedArray.getBoolean(R.styleable.CarouselViewPager_isWheel, true);
         indicatorType = typedArray.getString(R.styleable.CarouselViewPager_indicatorType);
+        if (TextUtils.isEmpty(indicatorType)) {
+            indicatorType = DOT_INDICATOR;
+        }
         initView();
     }
 
@@ -134,12 +140,12 @@ public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageCh
      * 初始化View
      */
     private void initView() {
-        if (roun > 0) {
+        if (fillet > 0) {
             //父布局设置圆角
             setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {
-                    outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), roun);
+                    outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), fillet);
                 }
             });
             setClipToOutline(true);
@@ -185,7 +191,7 @@ public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageCh
     }
 
     public LinearLayout getdotIndicator() {
-       return mIndicatorLayout;
+        return mIndicatorLayout;
     }
 
 
@@ -232,16 +238,17 @@ public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageCh
      * @param showPosition 默认显示位置
      */
     public void setData(List<String> list, ImageCycleViewListener listener, int showPosition) {
-
         if (list == null || list.size() == 0) {
             //没有数据时隐藏整个布局
             this.setVisibility(View.GONE);
             return;
         }
-
         mViews.clear();
         infos = list;
-
+        if (infos.size() < 2) {
+            setWheel(false);
+            setCycle(false);
+        }
         if (isCycle) {
             //添加轮播图View，数量为集合数+2
             // 将最后一个View添加进来
@@ -257,39 +264,38 @@ public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageCh
                 mViews.add(getImageView(mContext, infos.get(i)));
             }
         }
-
-
         if (mViews == null || mViews.size() == 0) {
             //没有View时隐藏整个布局
             this.setVisibility(View.GONE);
             return;
         }
-
         mImageCycleViewListener = listener;
-        if (DOT_INDICATOR.equals(indicatorType)) {
-            int ivSize = mViews.size();
-            // 设置指示器
-            mIndicators = new ImageView[ivSize];
-            if (isCycle) {
-                mIndicators = new ImageView[ivSize - 2];
+        if (infos.size() > 1) {
+            if (DOT_INDICATOR.equals(indicatorType)) {
+                int ivSize = mViews.size();
+                // 设置指示器
+                mIndicators = new ImageView[ivSize];
+                if (isCycle) {
+                    mIndicators = new ImageView[ivSize - 2];
+                }
+                mIndicatorLayout.removeAllViews();
+                for (int i = 0; i < mIndicators.length; i++) {
+                    mIndicators[i] = new ImageView(mContext);
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                            20, 20);
+                    lp.setMargins(10, 0, 10, 0);
+                    mIndicators[i].setLayoutParams(lp);
+                    mIndicatorLayout.addView(mIndicators[i]);
+                }
             }
-            mIndicatorLayout.removeAllViews();
-            for (int i = 0; i < mIndicators.length; i++) {
-                mIndicators[i] = new ImageView(mContext);
-//            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-//                    LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-//            int width = DisplayUtil.mm2px(7);
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                        20, 20);
-                lp.setMargins(10, 0, 10, 0);
-                mIndicators[i].setLayoutParams(lp);
-                mIndicatorLayout.addView(mIndicators[i]);
-            }
+        } else {
+            mIndicatorLayout.setVisibility(GONE);
+            lable_TextView.setVisibility(GONE);
         }
         mAdapter = new ViewPagerAdapter();
         // 默认指向第一项，下方viewPager.setCurrentItem将触发重新计算指示器指向
         setIndicator(0);
-        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setOffscreenPageLimit(mViews.size());
         mViewPager.setOnPageChangeListener(this);
         mViewPager.setAdapter(mAdapter);
         if (showPosition < 0 || showPosition >= mViews.size()) {
@@ -299,12 +305,6 @@ public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageCh
             showPosition = showPosition + 1;
         }
         mViewPager.setCurrentItem(showPosition);
-//        setWheel(true);//设置轮播
-        if (isWheel && infos.size() > 1) {
-            setWheel(true);
-        } else {
-            setWheel(false);
-        }
     }
 
     /**
@@ -325,7 +325,7 @@ public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageCh
         if (view != null) {
             final ImageView imageView = view.findViewById(R.id.image);
             RequestOptions options = new RequestOptions()
-                    .transform(new CenterCrop(), new RoundedCornersTransform(roun, roun, roun, roun));
+                    .transform(new CenterCrop(), new RoundedCornersTransform(fillet, fillet, fillet, fillet));
             Glide.with(context).load(imgurl)
                     .apply(options)
 //                    .placeholder(placeholder > 0 ? placeholder : R.drawable.photo_empty)
@@ -336,8 +336,8 @@ public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageCh
     }
 
 
-    public void setRoun(int roun) {
-        this.roun = roun;
+    public void setFillet(int fillet) {
+        this.fillet = fillet;
     }
 
     /**
@@ -347,6 +347,9 @@ public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageCh
      */
     private void setIndicator(int selectedPosition) {
 //        setText(mTitle, infos.get(selectedPosition).getTitle());
+        if (infos.size() < 2) {
+            return;
+        }
         try {
             if (DOT_INDICATOR.equals(indicatorType)) {
                 for (int i = 0; i < mIndicators.length; i++) {
@@ -394,7 +397,8 @@ public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageCh
                 v.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mImageCycleViewListener.onImageClick(infos.get(mCurrentPosition - 1), isCycle ? mCurrentPosition - 1 : mCurrentPosition, v);
+                        int posi = isCycle ? mCurrentPosition - 1 : mCurrentPosition;
+                        mImageCycleViewListener.onImageClick(infos.get(posi), posi, v);
                     }
                 });
             }
@@ -497,8 +501,8 @@ public class CarouselViewPager extends FrameLayout implements ViewPager.OnPageCh
      */
     public void setWheel(boolean isWheel) {
         this.isWheel = isWheel;
-        isCycle = true;
         if (isWheel) {
+            isCycle = true;
             handler.postDelayed(runnable, delay);
         }
     }

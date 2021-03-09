@@ -45,7 +45,7 @@ publish {
     repoName = 'android'           //bintray仓库名
     groupId = 'cn.yangkang.carousellibrary'         //compile引用时的第1部分groupId，一般为module的包名
     artifactId = 'CarouselViewPager'     //compile引用时的第2部分项目名，这个需要与我们之前创建的package的Name一样，要不会上传失败
-    publishVersion = '1.0.1'    //compile引用时的第3部分版本号
+    publishVersion = '1.0.3'    //compile引用时的第3部分版本号
     desc = 'This is a library '  //描述  随便写
     website = 'https://github.com/yangkangs/CarouselViewPager'   //项目的网页，可以写源码的GitHub地址
     //Terminal输入：gradlew clean build bintrayUpload -PbintrayUser=yangkang -PbintrayKey=7fe20215dd08a13042b570a08d79526d9feaad01 -PdryRun=false
