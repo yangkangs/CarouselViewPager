@@ -305,6 +305,9 @@ public class CarouselViewPager extends FrameLayout
             showPosition = showPosition + 1;
         }
         mViewPager.setCurrentItem(showPosition);
+        if (isWheel && infos.size() > 1) {
+            setWheel(true);
+        }
     }
 
     /**
